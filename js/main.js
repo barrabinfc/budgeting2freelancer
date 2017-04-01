@@ -1,20 +1,58 @@
 var state = {
   charging_method: 'by_fixedprice',
   settings_visible: 'hidden',
+  itemSelector:     '.todo .item',
+  items:            []
 }
 
 var WORDS_ADJ   = ['secret','precious','tremendous','adorable','pink','capricious','turquoise',
                    'corageous','dazzling','educated','erratic','creative','entertaining',
                    'witty','harmonious','mature','organic','gluten-free','therapeutic']
-var WORDS_OBJS  = ['time','attention','expertise','taste','study','talent','effort','art',
+var WORDS_NOUNS  = ['time','attention','expertise','taste','study','talent','effort','art',
                    'history','computer','data','knowledge','idea','development','policy',
                   'professionalism','dance','support','dump','pride','communication']
 
-var randWord = function(wordList){
+var pickRandom = function(wordList){
   var l = wordList.length-1
   var rand = Math.round( Math.random()*l )
   return wordList[rand]
 }
+
+/* Memoize can be magic */
+function memoize(func) {
+  var cache = {};
+  return function() {
+    var key = arguments;
+    if(cache[key]) {
+      console.log("memoize worked: ", cache[key])
+      return cache[key];
+    }
+    else {
+      var val = func.apply(this, arguments);
+      cache[key] = val;
+      return val;
+    }
+  };
+}
+
+function idOrClassName(el){
+  return ('#' + el.getAttribute('id') != '#null') ||
+         ('.' + Array.from(el.classList).join('.'))
+}
+
+function elToSelector(el){
+  return idOrClassName(el.parentNode) + '>' + idOrClassName(el)
+}
+
+/* safeListen avoid memory leaks when using addEventListener */
+var safeListen = function( element ){
+  console.log("memoized for: " + elToSelector(element))
+  return memoize(function(event,cb){
+    console.log("addEventListener " + elToSelector(element) + '('+event +') ' + cb.name)
+    return element.addEventListener(event, cb)
+  });
+}
+
 
 // hourly-rate math
 var calculateHourlyRate = function(itemEl){
@@ -60,31 +98,49 @@ var displayTotal = function(itemsEls){
 
 /* Calculate everything from start */
 var recalculate = function(){
-  var itemsEls = document.querySelectorAll('.todo .item')
-
-  itemsEls.forEach( function(it){
+  state['items'].forEach( function(it){
     displayItemPrice( it )
   })
-  displayTotal(itemsEls)
+  displayTotal(state['items'])
+}
+
+
+// update state
+var updateState = function() {
+  state['items'] = document.querySelectorAll( state['itemSelector'] )
+}
+
+// Add item appropriate listeners
+var mkItemInteractive = function(item){
+  var rmItemBtn = item.querySelector('.rmItem-btn')
+
+  item.addEventListener('focusout',recalculate)
+  rmItemBtn.addEventListener('click', handleRmItemClick )
 }
 
 /* Add a new cloned invoice item */
-var createItem = function( itemSelector ){
+var createItem = function( ){
   var lastItem = state.items.length - 1
   var newItem = state['items'][lastItem].cloneNode(true)
 
-  newItem.querySelector('.name').textContent = 'My +ADJ +OBJ.'.replace('+ADJ',randWord(WORDS_ADJ)).replace('+OBJ', randWord(WORDS_OBJS))
-  newItem.querySelector('.description').textContent = 'And also because of my +ADJ +OBJ.'.replace('+ADJ',randWord(WORDS_ADJ)).replace('+OBJ',randWord(WORDS_OBJS))
+  newItem.querySelector('.name').textContent = 'My +ADJ +NOUN.'
+         .replace('+ADJ',pickRandom(WORDS_ADJ)).replace('+NOUN', pickRandom(WORDS_NOUNS))
+  newItem.querySelector('.description').textContent = 'And also because of my +ADJ +NOUN.'
+          .replace('+ADJ',pickRandom(WORDS_ADJ)).replace('+NOUN',pickRandom(WORDS_NOUNS))
   newItem.querySelector('.subtotal').textContent =  1000
   newItem.querySelector('.hrs').textContent = 10
   newItem.querySelector('.rate').textContent = 100
 
+  mkItemInteractive( newItem )
+
+  // add to DOM, and update state
   state['items'][lastItem].parentNode.appendChild(newItem)
-  state['items'] = document.querySelectorAll( itemSelector )
+  updateState()
 }
 
-var removeItem = function( itemIndex ) {
-
+var removeItem = function( item ) {
+  item.remove()
+  updateState()
 }
 
 /* Change Tooltip visible/hidden */
@@ -118,9 +174,17 @@ var handleChargingChange = function( defaultTgt, e ){
   recalculate(state.items)
 }
 
-var handleAddItemClick = function(itemSelector, e){
-  createItem(itemSelector)
-  recalculate( state['items'] )
+var handleAddItemClick = function( e){
+  createItem( )
+  recalculate( )
+}
+
+var handleRmItemClick = function(e) {
+  let itemRmBtn = e.target
+  let itemEl    = itemRmBtn.parentNode.parentNode
+
+  removeItem( itemEl )
+  recalculate()
 }
 
 
@@ -129,18 +193,22 @@ var start = function(){
   state['settingsBtn']       = document.querySelector('.settings-btn')
   state['addItemBtn']        = document.querySelector('.additem-btn')
   state['chargingMethodEl']  =  document.querySelector('#charging-method')
-  state['items']             =  document.querySelectorAll('.todo .item')
+  updateState()
 
   state.chargingMethodEl.addEventListener('change', handleChargingChange.bind({}, '.project-todo') )
   state.settingsBtn.addEventListener('click',       handleSettingsClick.bind({},  '.settings-tooltip')  )
-  state.addItemBtn.addEventListener('click',        handleAddItemClick.bind({},   '.todo .item'))
+  state.addItemBtn.addEventListener('click',        handleAddItemClick )
+
+  state['items'].forEach( function(item){
+    mkItemInteractive(item)
+  })
 
   /* recalculate when people edit item values
   state.items.forEach( function(it) {
     it.addEventListener('focusout', function(e){ recalculate() })
   })*/
 
-  recalculate(state.items)
+  recalculate()
 }
 
 document.addEventListener('DOMContentLoaded', start)

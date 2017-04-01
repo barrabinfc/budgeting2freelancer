@@ -74,6 +74,9 @@ h1,h2,h3,h4,h5,h6 {
   font-family: 'Oswald', sans-serif;
 }
 
+/*
+ * General buttons
+ */
 .settings-btn {
   z-index: 10;
   position: absolute;
@@ -96,6 +99,14 @@ h1,h2,h3,h4,h5,h6 {
 .additem-btn:hover {
   transform: scale(1.2);
 }
+
+/*
+ * Editable items
+ */
+*[contenteditable="true"]:focus {
+  outline: 2px dashed #b3b3b3;
+}
+
 
 /*
  * Header (logo and Date)
@@ -212,8 +223,8 @@ header #invoice-date {
 }
 
 .project-todo .info > .name { width: 50%; text-align: left; }
-.project-todo .info > .hrs , .info > .rate { width: 15%; }
-.project-todo .info > .subtotal { width: 20%; }
+.project-todo .info > .hrs , .info > .rate { width: 10%; }
+.project-todo .info > .subtotal { width: 10%; }
 
 
 /* By hour / by Fixed price modifiers */
@@ -233,6 +244,7 @@ header #invoice-date {
 
 .breakdown .summary {
   display: flex;
+  justify-content: space-between;
   line-height: 2.0em;
   font-size: 1.2em;
   font-weight: bold;
@@ -246,10 +258,14 @@ header #invoice-date {
   justify-content: space-between;
   align-items: center;
   text-align: right;
+  position: relative;
   line-height: 2.0em;
   font-weight: bold;
   padding: 5px 10px;
+  background-clip: padding-box;
 }
+
+.breakdown .todo > .item > .info > .name { transition: transform 0.15s ease-out; }
 
 .breakdown .todo > .item > .info > .rate::before ,
 .breakdown .todo > .item > .info > .subtotal::before {
@@ -263,6 +279,37 @@ header #invoice-date {
 
 .breakdown .todo > .item:last-of-type {
   border-bottom: 2px solid #f3f3f3;
+}
+
+
+/* Show rm-item btn on hover */
+.breakdown .todo > .item .info .rmItem-btn {
+  position: absolute;
+  left: 5px;
+  background: rgba(255,0,0,0.5);
+  color: #fff;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  content: '-';
+  line-height: 1.0em;
+  text-align: center;
+  cursor: pointer;
+
+  transition: all 0.15s ease-out;
+  transform: scale(0.1);
+
+  visibility: hidden;
+  opacity: 0;
+}
+
+.breakdown .todo > .item > .info:hover > .rmItem-btn {
+  transform: scale(1.0);
+  visibility: visible;
+  opacity: 1;
+}
+.breakdown .todo > .item > .info:hover > .name {
+  transform: translateX(16px)
 }
 
 
@@ -331,7 +378,6 @@ footer {
   align-items: center;
   width: 32px;
   height: 32px;
-  background-color: #f3f3f3;
 }
 .iconbtn:hover {
   cursor: pointer;
@@ -376,6 +422,15 @@ footer {
 }
 .soft-bg {
   background-color: #f3f3f3;
+}
+.gray-bg {
+  background-color: #b3b3b3;
+  color: #3b3b3b;
+}
+.great {}
+.attention {
+  background-color: #fcb040;
+  color: #fff;
 }
 
 
