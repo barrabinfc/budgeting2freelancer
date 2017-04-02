@@ -496,7 +496,7 @@ footer {
     }
 
     body {
-      width: 100vw;
+      width: 90vw;
     }
 
     a,
@@ -536,4 +536,5 @@ footer {
         max-width: 100% !important;
     }
 
+    .iconbtn { visibility: hidden; }
 }
