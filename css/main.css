@@ -4,6 +4,11 @@ html {
     line-height: 1.4;
 }
 
+
+p {
+  margin: 0; padding: 0;
+}
+
 ::-moz-selection {
     background: #b3d4fc;
     text-shadow: none;
@@ -217,6 +222,7 @@ header #invoice-date {
  * List of items billed for the project
  */
 .project-todo {
+  margin-top: 20px;
   width: 90%;
   margin: 50px auto;
   position: relative;
@@ -272,6 +278,7 @@ header #invoice-date {
   content: 'R$';
   margin-right: 5px;
 }
+
 
 .breakdown .todo > .item > .description {
   padding: 20px;
@@ -537,4 +544,8 @@ footer {
     }
 
     .iconbtn { visibility: hidden; }
+    
+    .project-todo {
+      margin-bottom: 0;
+    }
 }
