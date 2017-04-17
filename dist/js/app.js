@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -73,52 +73,48 @@
 "use strict";
 
 
+var _editable = __webpack_require__(1);
+
+var _editable2 = _interopRequireDefault(_editable);
+
+var _words = __webpack_require__(2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var settings = {
+  itemSelector: '.todo .item',
+  editableSelector: '*[role="editable"]'
+};
+
 var state = {
   charging_method: 'by_fixedprice',
   settings_visible: 'hidden',
-  itemSelector: '.todo .item',
-  items: []
+  items: [],
+  editables: []
 };
 
 // Store
 var store = {};
 
-var WORDS_ADJ = ['secret', 'precious', 'tremendous', 'adorable', 'pink', 'capricious', 'turquoise', 'corageous', 'dazzling', 'educated', 'erratic', 'creative', 'entertaining', 'witty', 'harmonious', 'mature', 'organic', 'gluten-free', 'therapeutic'];
-var WORDS_NOUNS = ['time', 'attention', 'expertise', 'taste', 'study', 'talent', 'effort', 'art', 'history', 'computer', 'data', 'knowledge', 'idea', 'development', 'policy', 'professionalism', 'dance', 'support', 'dump', 'pride', 'communication'];
-
-var pickRandom = function pickRandom(wordList) {
-  var l = wordList.length - 1;
-  var rand = Math.round(Math.random() * l);
-  return wordList[rand];
-};
-
-function idOrClassName(el) {
-  return '#' + el.getAttribute('id') != '#null' || '.' + Array.from(el.classList).join('.');
-}
-
-function elToSelector(el) {
-  return idOrClassName(el.parentNode) + '>' + idOrClassName(el);
-}
-
 // hourly-rate math
-var calculateHourlyRate = function calculateHourlyRate(itemEl) {
+function calculateHourlyRate(itemEl) {
   var rate = parseFloat(itemEl.querySelector('.rate').textContent);
   var hrs = parseFloat(itemEl.querySelector('.hrs').textContent);
 
   return rate * hrs;
-};
+}
 
-var calculateFixedPrice = function calculateFixedPrice(itemEl) {
+function calculateFixedPrice(itemEl) {
   return parseFloat(itemEl.querySelector('.subtotal').textContent);
-};
+}
 
 // one item price
-var calculateItemPrice = function calculateItemPrice(itemEl) {
+function calculateItemPrice(itemEl) {
   return state.charging_method == 'by_hour' ? calculateHourlyRate(itemEl) : calculateFixedPrice(itemEl);
-};
+}
 
 // invoice items sum
-var calculateTotal = function calculateTotal(itemsEls) {
+function calculateTotal(itemsEls) {
   var total = 0;
   itemsEls.forEach(function (it) {
     var itemPrice = calculateItemPrice(it);
@@ -126,48 +122,49 @@ var calculateTotal = function calculateTotal(itemsEls) {
   });
 
   return total;
-};
+}
 
 /* Display single item hourly rate */
-var displayItemPrice = function displayItemPrice(itemEl) {
+function displayItemPrice(itemEl) {
   var subtotalEl = itemEl.querySelector('.subtotal');
   subtotalEl.textContent = Number(calculateItemPrice(itemEl)).toFixed(0);
-};
+}
 
 /* Display calculated invoice */
-var displayTotal = function displayTotal(itemsEls) {
+function displayTotal(itemsEls) {
   var totalEl = document.querySelector('.total .subtotal > .value');
   totalEl.textContent = Number(calculateTotal(itemsEls)).toFixed(0);
-};
+}
 
 /* Calculate everything from start */
-var recalculate = function recalculate() {
+function recalculate() {
   state['items'].forEach(function (it) {
     displayItemPrice(it);
   });
   displayTotal(state['items']);
-};
+}
 
 // update state
-var updateState = function updateState() {
-  state['items'] = document.querySelectorAll(state['itemSelector']);
-};
+function updateState() {
+  state['items'] = document.querySelectorAll(settings['itemSelector']);
+  state['editables'] = document.querySelectorAll(settings['editableSelector']);
+}
 
 // Add item appropriate listeners
-var mkItemInteractive = function mkItemInteractive(item) {
+function mkItemInteractive(item) {
   var rmItemBtn = item.querySelector('.rmItem-btn');
 
   item.addEventListener('focusout', recalculate);
   rmItemBtn.addEventListener('click', handleRmItemClick);
-};
+}
 
 /* Add a new cloned invoice item */
-var createItem = function createItem() {
+function createItem() {
   var lastItem = state.items.length - 1;
   var newItem = state['items'][lastItem].cloneNode(true);
 
-  newItem.querySelector('.name').textContent = 'My +ADJ +NOUN.'.replace('+ADJ', pickRandom(WORDS_ADJ)).replace('+NOUN', pickRandom(WORDS_NOUNS));
-  newItem.querySelector('.description').textContent = 'And also because of my +ADJ +NOUN.'.replace('+ADJ', pickRandom(WORDS_ADJ)).replace('+NOUN', pickRandom(WORDS_NOUNS));
+  newItem.querySelector('.name').textContent = 'My +ADJ +NOUN.'.replace('+ADJ', (0, _words.pickRandWord)(_words.WORDS_ADJ)).replace('+NOUN', (0, _words.pickRandWord)(_words.WORDS_NOUNS));
+  newItem.querySelector('.description').textContent = 'And also because of my +ADJ +NOUN.'.replace('+ADJ', (0, _words.pickRandWord)(_words.WORDS_ADJ)).replace('+NOUN', (0, _words.pickRandWord)(_words.WORDS_NOUNS));
   newItem.querySelector('.subtotal').textContent = 1000;
   newItem.querySelector('.hrs').textContent = 10;
   newItem.querySelector('.rate').textContent = 100;
@@ -177,36 +174,36 @@ var createItem = function createItem() {
   // add to DOM, and update state
   state['items'][lastItem].parentNode.appendChild(newItem);
   updateState();
-};
+}
 
-var removeItem = function removeItem(item) {
+function removeItem(item) {
   item.remove();
   updateState();
-};
+}
 
 /* Change Tooltip visible/hidden */
-var changeTooltipVisibility = function changeTooltipVisibility(tooltipEl, newVisibility) {
+function changeTooltipVisibility(tooltipEl, newVisibility) {
   tooltipEl.classList.remove(state['settings_visible']);
   state['settings_visible'] = newVisibility;
   tooltipEl.classList.add(newVisibility);
-};
+}
 
 /* Change charge method to newMethod. Apply css 'newMethod' to defaultTgt */
-var changeChargingMethodLayout = function changeChargingMethodLayout(defaultTgt, newMethod) {
+function changeChargingMethodLayout(defaultTgt, newMethod) {
   defaultTgt.classList.remove(state['charging_method']);
   state['charging_method'] = newMethod;
   defaultTgt.classList.add(newMethod);
-};
+}
 
-var handleSettingsClick = function handleSettingsClick(targetEl, e) {
+function handleSettingsClick(targetEl, e) {
   var tgtEl = document.querySelector(targetEl) || document.querySelector(e.target.getAttribute('data-target'));
   changeTooltipVisibility(tgtEl, state['settings_visible'] == 'visible' ? 'hidden' : 'visible');
-};
+}
 
 /*
  * Charge method changed.
  */
-var handleChargingChange = function handleChargingChange(defaultTgt, e) {
+function handleChargingChange(defaultTgt, e) {
   var tgtEl = document.querySelector(defaultTgt);
 
   var chargingMethodEl = e.target;
@@ -216,43 +213,134 @@ var handleChargingChange = function handleChargingChange(defaultTgt, e) {
 
   changeChargingMethodLayout(tgtEl, chargingMethodOpts[chargingMethodEl.selectedIndex]);
   recalculate(state.items);
-};
+}
 
-var handleAddItemClick = function handleAddItemClick(e) {
+function handleAddItemClick(e) {
   createItem();
   recalculate();
-};
+}
 
-var handleRmItemClick = function handleRmItemClick(e) {
+function handleRmItemClick(e) {
   var itemRmBtn = e.target;
   var itemEl = itemRmBtn.parentNode.parentNode;
 
   removeItem(itemEl);
   recalculate();
-};
+}
 
-var start = function start() {
+function start() {
 
   state['settingsBtn'] = document.querySelector('.settings-btn');
   state['addItemBtn'] = document.querySelector('.additem-btn');
   state['chargingMethodEl'] = document.querySelector('#charging-method');
-  updateState();
 
   state.chargingMethodEl.addEventListener('change', handleChargingChange.bind({}, '.project-todo'));
   state.settingsBtn.addEventListener('click', handleSettingsClick.bind({}, '.settings-tooltip'));
   state.addItemBtn.addEventListener('click', handleAddItemClick);
 
-  state['items'].forEach(function (item) {
-    mkItemInteractive(item);
+  updateState();
+
+  state['items'].forEach(mkItemInteractive);
+  state['editables'].forEach(function (editable) {
+    new _editable2.default(editable);
   });
 
   recalculate();
-};
+}
 
 document.addEventListener('DOMContentLoaded', start);
 
 /***/ }),
 /* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/*
+ * Fix native contenteditable bugs
+ *
+ * 1. translate empty <p><br/><p> to empty <p> tag.
+ */
+
+// Remove empty <p><br/><p> to empty <p> tag.
+function collapseEmptyElement(element) {
+    var _cleanHtml = "";
+    var _dirtyHtml = element.innerHTML.trim();
+
+    element.innerHTML = _dirtyHtml.replace(/^<p><br><\/p>$/, "");
+}
+
+var TxtEditable = function () {
+    /*
+     * Make el editable
+     *
+     * @params el   Element to be made editable
+     */
+    function TxtEditable(el) {
+        _classCallCheck(this, TxtEditable);
+
+        this.el = el;
+        this.makeEditable(this.el);
+        this._blurHandler = this.el.addEventListener('blur', this.blurHandler.bind(this));
+    }
+
+    /* Make El editable 
+     * @params el Element
+     * @params is_editable Boolean to be made editable or not 
+     */
+
+
+    _createClass(TxtEditable, [{
+        key: "makeEditable",
+        value: function makeEditable(el) {
+            var isEditable = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+
+            var _iseditable = isEditable ? 'true' : 'false';
+            this.el.setAttribute('contentEditable', _iseditable);
+        }
+    }, {
+        key: "blurHandler",
+        value: function blurHandler(ev) {
+            console.log(ev);
+            collapseEmptyElement(ev.target);
+        }
+    }]);
+
+    return TxtEditable;
+}();
+
+exports.default = TxtEditable;
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+                   value: true
+});
+var WORDS_ADJ = exports.WORDS_ADJ = ['secret', 'precious', 'tremendous', 'adorable', 'pink', 'capricious', 'turquoise', 'corageous', 'dazzling', 'educated', 'erratic', 'creative', 'entertaining', 'witty', 'harmonious', 'mature', 'organic', 'gluten-free', 'therapeutic'];
+var WORDS_NOUNS = exports.WORDS_NOUNS = ['time', 'attention', 'expertise', 'taste', 'study', 'talent', 'effort', 'art', 'history', 'computer', 'data', 'knowledge', 'idea', 'development', 'policy', 'professionalism', 'dance', 'support', 'dump', 'pride', 'communication'];
+
+var pickRandWord = exports.pickRandWord = function pickRandWord(wordList) {
+                   var l = wordList.length - 1;
+                   var rand = Math.round(Math.random() * l);
+                   return wordList[rand];
+};
+
+/***/ }),
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(0);

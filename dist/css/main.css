@@ -79,6 +79,10 @@
   color: #fff;
 }
 
+.unset {
+    all: unset;
+}
+
 .hidden {
     visibility: hidden;
     opacity: 0;
@@ -225,7 +229,7 @@ h1,h2,h3,h4,h5,h6 {
  * Editable items
  */
 
-*[contenteditable="true"]:focus {
+*[contenteditable]:focus {
   outline: 2px dashed #b3b3b3;
 }
 
@@ -346,12 +350,19 @@ header #invoice-date {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  width: 90%;
+  width: 100%;
   margin: 30px auto;
 }
 
-.payment-info .payment-to .account {
-  width: 300px;
+.payment-info .client-info {
+  margin-right: 1.0em;
+  max-width: 70%;
+}
+
+.payment-info .payment-to { 
+/*.payment-info .payment-to .account { */
+  width: auto;
+  min-width: 30%;
 }
 
 .payment-info .payment-to .account > div {
@@ -365,7 +376,6 @@ header #invoice-date {
 
 .payment-info .payment-to .account label {
   font-weight: bold;
-  width: 150px;
 }
 
 /*
@@ -374,7 +384,7 @@ header #invoice-date {
 
 .project-todo {
   margin-top: 20px;
-  width: 90%;
+  width: 100%;
   margin: 50px auto;
   position: relative;
 }
@@ -383,7 +393,7 @@ header #invoice-date {
 
 .project-todo .info > .hrs , .info > .rate { width: 10%; }
 
-.project-todo .info > .subtotal { width: 10%; }
+.project-todo .info > .subtotal { width: 20%; }
 
 /* By hour / by Fixed price modifiers */
 
@@ -452,7 +462,12 @@ header #invoice-date {
 }
 
 .breakdown .todo > .item > .description {
-  padding: 20px;
+  transition: padding 0.15s ease-out;
+  padding: 1em
+}
+
+.breakdown .todo > .item > .description:empty {
+  padding: 0em;
 }
 
 .breakdown .todo > .item:last-of-type {
