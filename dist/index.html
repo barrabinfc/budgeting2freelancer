@@ -7,7 +7,6 @@
         <meta name="description" content="BBFC Invoice Template">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="stylesheet" href="css/normalize.min.css">
         <link rel="stylesheet" href="css/main.css">
 
         <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Oswald" rel="stylesheet">
@@ -16,26 +15,26 @@
 
       <header>
         <div class="producer-info">
-          <div class="refrao" role="editable" g>Vitor Calejuri - Freelance app development</div>
-          <div class="email" role="editable" g>vitor.cajuleri@gmail.com</div>
-          <div class="telephone" role="editable" g>+55 11 22154412</div>
+          <div id="logo-refrao" class="refrao" role="editable" >Vitor Calejuri - Freelance app development</div>
+          <div id="logo-email" class="email" role="editable" >vitor.cajuleri@gmail.com</div>
+          <div id="logo-telephone" class="telephone" role="editable" >+55 11 22154412</div>
         </div>
         <div class="metadata">
-          <h1 id="invoice-id" role="editable" g>Orçamento #01</h1>
-          <div id="invoice-date" role="editable" g>Abril , 13 , 2017</div>
+          <h1 id="invoice-id" role="editable" >Orçamento #01</h1>
+          <div id="invoice-date" role="editable" >Abril , 13 , 2017</div>
         </div>
       </header>
 
       <article class="payment-info">
-        <section class="client-info" role="editable" g>
+        <section id="client-info" class="client-info" role="editable" >
           <h2>Nome da Empresa</h2>
           <p>
-          Orçamento para o desenvolvimento do site <strong>www.northface.com</strong><br/>
+          Orçamento para o desenvolvimento do site <stron>www.northface.com</stron><br/>
           Com identidade visual, CMS Wordpress, layout responsivo para dispositivos mobile, seguindos os
           padrões de qualidade W3C.
           </p>
         </section>
-        <section class="payment-to" role="editable" g>
+        <section id="payment-to" class="payment-to" role="editable" >
             <h2>Tecnologias:</h2>
             <div class="account">
               <div id="beneficiario"><label>Backend: </label><span>Wordpress e PHP5</span></div>
@@ -48,7 +47,7 @@
 
       <section class="project-todo by_fixedprice">
         <div class="project-title">
-          <!-- <h1 role="editable" g>Northface Web Site</h1> -->
+          <!-- <h1 role="editable" >Northface Web Site</h1> -->
           <!-- 
           <div class="iconbtn round attention settings-btn" data-target=".settings-tooltip">💵</div>
           <div class="tooltip left settings-tooltip hidden">
@@ -78,80 +77,80 @@
             <div class="rate">TAXA</div>
             <div class="subtotal">SUBTOTAL</div>
           </div>
-          <div class="todo">
-            <div class="item">
+          <ul class="todo">
+            <li id="breakdown-item-01" class="item">
               <div class="info soft-bg">
                 <div class="iconbtn round attention rmItem-btn">-</div>
 
-                <div class="name" role="editable" g>Identidade visual e wireframe</div>
-                <div class="hrs" role="editable" g>40</div>
-                <div class="rate" role="editable" g> 40</div>
-                <div class="subtotal" role="editable" g> 1600</div>
+                <div class="name" role="editable" >Identidade visual e wireframe</div>
+                <div class="hrs" role="editable" >40</div>
+                <div class="rate" role="editable" > 40</div>
+                <div class="subtotal" role="editable" > 1600</div>
               </div>
-              <div class="description" role="editable" g>
+              <div class="description" role="editable" >
                 <p>- Criação da identidade visual —logo, tipografia, cores e grid. Direito a 2 revisões.</p>
-                <p>- Wireframe individual das páginas  <strong>[ gih, agrupei em 6 paginas, 150 reais por pagina, favor retirar isso]</strong></p>
+                <p>- Wireframe individual das páginas  <stron>[ gih, agrupei em 6 paginas, 150 reais por pagina, favor retirar isso]</stron></p>
                 <p>&emsp;&emsp;Home, Cursos & Eventos, Atêliers, Galeria de fotos, Contato , Sobre a professora & Serviços.</p>
               </div>
-            </div>
-            <div class="item">
+            </li>
+            <li id="breakdown-item-02" class="item">
               <div class="info soft-bg">
                 <div class="iconbtn round attention rmItem-btn">-</div>
 
-                <div class="name" role="editable" g>Desenvolvimento dos templates em HTML</div>
-                <div class="hrs" role="editable" g>50</div>
-                <div class="rate" role="editable" g> 45</div>
-                <div class="subtotal" role="editable" g> 2250</div>
+                <div class="name" role="editable" >Desenvolvimento dos templates em HTML</div>
+                <div class="hrs" role="editable" >50</div>
+                <div class="rate" role="editable" > 45</div>
+                <div class="subtotal" role="editable" > 2250</div>
 
               </div>
-              <div class="description" role="editable" g>
+              <div class="description" role="editable" >
                 <p>- Desenvolvimento dos layouts responsivos em HTML e CSS</p>
                 <p>- Desenvolvimento em PHP para mailing —newsletter— e inscrições online.</p>
               </div>
-            </div>
-            <div class="item">
+            </li>
+            <li id="breakdown-item-03" class="item">
               <div class="info soft-bg">
                 <div class="iconbtn round attention rmItem-btn">-</div>
 
-                <div class="name" role="editable" g>Otimização e acabamento</div>
-                <div class="hrs" role="editable" g>8</div>
-                <div class="rate" role="editable" g>40</div>
-                <div class="subtotal" role="editable" g>320</div>
+                <div class="name" role="editable" >Otimização e acabamento</div>
+                <div class="hrs" role="editable" >8</div>
+                <div class="rate" role="editable" >40</div>
+                <div class="subtotal" role="editable" >320</div>
 
               </div>
-              <div class="description" role="editable" g>
+              <div class="description" role="editable" >
                 <p>- Acabamento de layout , testes cross-browser em múltiplos dispositivos.</p>
                 <p>- Otimização para SEO —Google Page Rank— e limpeza p/ usuários mobile em 3G.</p>
               </div>
-            </div>
-            <div class="item">
+            </li>
+            <li id="breakdown-item-03" class="item">
               <div class="info soft-bg">
                 <div class="iconbtn round attention rmItem-btn">-</div>
 
-                <div class="name" role="editable" g>Instalação no servidor de produção</div>
-                <div class="hrs" role="editable" g>2</div>
-                <div class="rate" role="editable" g>40</div>
-                <div class="subtotal" role="editable" g>80</div>
+                <div class="name" role="editable" >Instalação no servidor de produção</div>
+                <div class="hrs" role="editable" >2</div>
+                <div class="rate" role="editable" >40</div>
+                <div class="subtotal" role="editable" >80</div>
 
               </div>
-              <div class="description" role="editable"  g>
+              <div class="description" role="editable"  >
                 <p>- Instalação e configuração no servidor escolhido.</p>
               </div>
-            </div>  
+            </li>  
           </div>
         </div>
         <div class="iconbtn round attention additem-btn">+</div>
 
         <div class="total soft">
           <div class="taxes">
-            <label class="soft-title" role="editable" g>IMPOSTOS:</label>
-            <span class="value" role="editable" g>N/A</span></div>
+            <label id="total-taxes-title" class="soft-title" role="editable" >IMPOSTOS:</label>
+            <span id="total-taxes-value" class="value" role="editable" >N/A</span></div>
           <div class="deductions">
-            <label class="soft-title" role="editable" g>DEDUÇÕES:</label>
-            <span class="value" g>N/A</span></div>
+            <label id="total-deduction-title" class="soft-title" role="editable" >DEDUÇÕES:</label>
+            <span id="total-deduction-value" class="value" >N/A</span></div>
           <div class="subtotal">
-            <label class="soft-title" role="editable" g>TOTAL:</label>
-            <span class="value">1200</span>
+            <label id="total-subtotal-title" class="soft-title" role="editable" >TOTAL:</label>
+            <span id="total-subtotal-value" class="value">1200</span>
           </div>
         </div>
       </section>
@@ -159,8 +158,8 @@
       <footer>
         <img class="decoration"></div>
         <!--
-        <span class="email" g>vitor.cajuleri@gmail.com</span>
-        <span class="website" g>www.bbfc.xyz</span>
+        <span class="email" >vitor.cajuleri@gmail.com</span>
+        <span class="website" >www.bbfc.xyz</span>
       -->
       </footer>
 

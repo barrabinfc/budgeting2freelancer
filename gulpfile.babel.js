@@ -13,7 +13,7 @@ import webpackConfig from "./webpack.conf";
 gulp.task("build", ["css","vendor-js","js"])
 
 gulp.task("css", () => {
-    gulp.src("./src/css/main.css")
+    gulp.src("./src/css/*.css")
         .pipe(sourcemaps.init())
         .pipe(postcss([cssImport({from: "./src/css/main.css"}), cssNext()]))
         .pipe(sourcemaps.write("."))

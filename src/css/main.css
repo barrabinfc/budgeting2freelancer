@@ -1,4 +1,6 @@
-@import "rules.css";
+@import "imports/normalize.css";
+@import "imports/rules.css";
+
 
 html {
     color: #3b3b3b;
@@ -376,10 +378,7 @@ footer {
         overflow-x: hidden;
         width: 95vw;
     }
-
-    #refrao { width: 350px; }
-    #email { width: 300px; }
-    #telephone { width: 250px; }
+    #refrao { width: 50vw; }
 }
 
 
@@ -438,7 +437,6 @@ footer {
 
     .iconbtn { visibility: hidden; }
     
-    .project-todo {
-      margin-bottom: 0;
-    }
+    .project-todo { margin-bottom: 0; }
+    #logo-refrao { width: 45vw; }
 }

@@ -91,6 +91,17 @@ a {
 }
 
 /**
+ * Lists without margin
+ */
+ul,li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+
+
+/**
  * Improve readability when focused and also mouse hovered in all browsers.
  */
 
