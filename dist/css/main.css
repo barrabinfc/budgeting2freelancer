@@ -178,7 +178,6 @@ body {
   background: #ffffff;
   font-weight: 500;
   font-style: normal;
-  min-width: 320px;
   width: 80vw;
   margin: 0 auto;
 }
@@ -257,7 +256,7 @@ header .producer-info {
 }
 
 header .producer-info .refrao {
-  text-indent: 140px;
+  text-indent: 10vw;
   font-weight: bold;
   color: #ffffff;
   background-color: #6cd370;
@@ -267,7 +266,7 @@ header .producer-info .refrao {
   -webkit-transform: rotateZ(-3deg);
           transform: rotateZ(-3deg);
 
-  width: 450px;
+  width: 40vw;
   height: 30px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -282,7 +281,7 @@ header .producer-info .refrao {
 }
 
 header .producer-info .email {
-  text-indent: 140px;
+  text-indent: 10vw;
   font-weight: bold;
   color: #ffffff;
   background-color: #fcb040;
@@ -293,7 +292,7 @@ header .producer-info .email {
           transform: rotateZ(-3deg);
 
 
-  width: 400px;
+  width: 35vw;
   height: 30px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -307,7 +306,7 @@ header .producer-info .email {
 }
 
 header  .producer-info .telephone {
-  text-indent: 140px;
+  text-indent: 10vw;
   font-weight: bold;
   color: #ffffff;
   background-color: #63cdf5;
@@ -317,7 +316,7 @@ header  .producer-info .telephone {
   -webkit-transform: rotateZ(-3deg);
           transform: rotateZ(-3deg);
 
-  width: 350px;
+  width: 30vw;
   height: 30px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -420,6 +419,10 @@ header #invoice-date {
   position: relative;
 }
 
+.breakdown {
+  position: relative;
+}
+
 .breakdown .summary {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -428,7 +431,7 @@ header #invoice-date {
       -ms-flex-pack: justify;
           justify-content: space-between;
   line-height: 2.0em;
-  font-size: 1.2em;
+  font-size: 1.0em;
   font-weight: bold;
   text-align: right;
   border-bottom: 2px solid #f3f3f3;
@@ -564,12 +567,16 @@ footer {
    Media Queries
    ========================================================================== */
 
-@media only screen and (min-width: 35em) {
+@media only screen and (max-width: 35em) {
+    body {
+        font-size: 12px;
+        overflow-x: hidden;
+        width: 95vw;
+    }
 
-}
-
-@media print, (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
-
+    #refrao { width: 350px; }
+    #email { width: 300px; }
+    #telephone { width: 250px; }
 }
 
 /* ==========================================================================
