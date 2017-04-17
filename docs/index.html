@@ -1,0 +1,168 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>BBFC Invoice</title>
+        <meta name="description" content="BBFC Invoice Template">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="css/main.css">
+
+        <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Oswald" rel="stylesheet">
+    </head>
+    <body>
+
+      <header>
+        <div class="producer-info">
+          <div id="logo-refrao" class="refrao" role="editable" >Vitor Calejuri - Freelance app development</div>
+          <div id="logo-email" class="email" role="editable" >vitor.cajuleri@gmail.com</div>
+          <div id="logo-telephone" class="telephone" role="editable" >+55 11 22154412</div>
+        </div>
+        <div class="metadata">
+          <h1 id="invoice-id" role="editable" >Orçamento #01</h1>
+          <div id="invoice-date" role="editable" >Abril , 13 , 2017</div>
+        </div>
+      </header>
+
+      <article class="payment-info">
+        <section id="client-info" class="client-info" role="editable" >
+          <h2>Nome da Empresa</h2>
+          <p>
+          Orçamento para o desenvolvimento do site <stron>www.northface.com</stron><br/>
+          Com identidade visual, CMS Wordpress, layout responsivo para dispositivos mobile, seguindos os
+          padrões de qualidade W3C.
+          </p>
+        </section>
+        <section id="payment-to" class="payment-to" role="editable" >
+            <h2>Tecnologias:</h2>
+            <div class="account">
+              <div id="beneficiario"><label>Backend: </label><span>Wordpress e PHP5</span></div>
+              <div id="banco"><label>Frontend:</label><span>HTML5 (html, css, es6)</span></div>
+              <div></div>
+              <div>** Hospedagem e domínio não incluídos.</div>
+            </div>
+        </section>
+      </article>
+
+      <section class="project-todo by_fixedprice">
+        <div class="project-title">
+          <!-- <h1 role="editable" >Northface Web Site</h1> -->
+          <!-- 
+          <div class="iconbtn round attention settings-btn" data-target=".settings-tooltip">💵</div>
+          <div class="tooltip left settings-tooltip hidden">
+            <label for="Charging Method">Charging Method: </label>
+            <select name="Charging Method" id="charging-method">
+              <option value="by_hour">By Hour</option>
+              <option value="by_fixedprice" selected>By Fixed Price</option>
+            </select>
+          </div>
+          -->
+        </div>
+
+        <div class="breakdown">
+
+          <div class="iconbtn round attention settings-btn" data-target=".settings-tooltip">💵</div>
+          <div class="tooltip left settings-tooltip hidden">
+            <label for="Charging Method">Charging Method: </label>
+            <select name="Charging Method" id="charging-method">
+              <option value="by_hour">By Hour</option>
+              <option value="by_fixedprice" selected>By Fixed Price</option>
+            </select>
+          </div>
+
+          <div class="summary info soft-title">
+            <div class="name">Sumário</div>
+            <div class="hrs">HRS</div>
+            <div class="rate">TAXA</div>
+            <div class="subtotal">SUBTOTAL</div>
+          </div>
+          <ul class="todo">
+            <li id="breakdown-item-01" class="item">
+              <div class="info soft-bg">
+                <div class="iconbtn round attention rmItem-btn">-</div>
+
+                <div class="name" role="editable" >Identidade visual e wireframe</div>
+                <div class="hrs" role="editable" >40</div>
+                <div class="rate" role="editable" > 40</div>
+                <div class="subtotal" role="editable" > 1600</div>
+              </div>
+              <div class="description" role="editable" >
+                <p>- Criação da identidade visual —logo, tipografia, cores e grid. Direito a 2 revisões.</p>
+                <p>- Wireframe individual das páginas  <stron>[ gih, agrupei em 6 paginas, 150 reais por pagina, favor retirar isso]</stron></p>
+                <p>&emsp;&emsp;Home, Cursos & Eventos, Atêliers, Galeria de fotos, Contato , Sobre a professora & Serviços.</p>
+              </div>
+            </li>
+            <li id="breakdown-item-02" class="item">
+              <div class="info soft-bg">
+                <div class="iconbtn round attention rmItem-btn">-</div>
+
+                <div class="name" role="editable" >Desenvolvimento dos templates em HTML</div>
+                <div class="hrs" role="editable" >50</div>
+                <div class="rate" role="editable" > 45</div>
+                <div class="subtotal" role="editable" > 2250</div>
+
+              </div>
+              <div class="description" role="editable" >
+                <p>- Desenvolvimento dos layouts responsivos em HTML e CSS</p>
+                <p>- Desenvolvimento em PHP para mailing —newsletter— e inscrições online.</p>
+              </div>
+            </li>
+            <li id="breakdown-item-03" class="item">
+              <div class="info soft-bg">
+                <div class="iconbtn round attention rmItem-btn">-</div>
+
+                <div class="name" role="editable" >Otimização e acabamento</div>
+                <div class="hrs" role="editable" >8</div>
+                <div class="rate" role="editable" >40</div>
+                <div class="subtotal" role="editable" >320</div>
+
+              </div>
+              <div class="description" role="editable" >
+                <p>- Acabamento de layout , testes cross-browser em múltiplos dispositivos.</p>
+                <p>- Otimização para SEO —Google Page Rank— e limpeza p/ usuários mobile em 3G.</p>
+              </div>
+            </li>
+            <li id="breakdown-item-03" class="item">
+              <div class="info soft-bg">
+                <div class="iconbtn round attention rmItem-btn">-</div>
+
+                <div class="name" role="editable" >Instalação no servidor de produção</div>
+                <div class="hrs" role="editable" >2</div>
+                <div class="rate" role="editable" >40</div>
+                <div class="subtotal" role="editable" >80</div>
+
+              </div>
+              <div class="description" role="editable"  >
+                <p>- Instalação e configuração no servidor escolhido.</p>
+              </div>
+            </li>  
+          </div>
+        </div>
+        <div class="iconbtn round attention additem-btn">+</div>
+
+        <div class="total soft">
+          <div class="taxes">
+            <label id="total-taxes-title" class="soft-title" role="editable" >IMPOSTOS:</label>
+            <span id="total-taxes-value" class="value" role="editable" >N/A</span></div>
+          <div class="deductions">
+            <label id="total-deduction-title" class="soft-title" role="editable" >DEDUÇÕES:</label>
+            <span id="total-deduction-value" class="value" >N/A</span></div>
+          <div class="subtotal">
+            <label id="total-subtotal-title" class="soft-title" role="editable" >TOTAL:</label>
+            <span id="total-subtotal-value" class="value">1200</span>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <img class="decoration"></div>
+        <!--
+        <span class="email" >vitor.cajuleri@gmail.com</span>
+        <span class="website" >www.bbfc.xyz</span>
+      -->
+      </footer>
+
+        <script src="js/app.js"></script>
+    </body>
+</html>
