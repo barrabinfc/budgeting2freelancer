@@ -5,6 +5,9 @@ var state = {
   items:            []
 }
 
+// Store
+var store = {};
+
 var WORDS_ADJ   = ['secret','precious','tremendous','adorable','pink','capricious','turquoise',
                    'corageous','dazzling','educated','erratic','creative','entertaining',
                    'witty','harmonious','mature','organic','gluten-free','therapeutic']
@@ -18,23 +21,6 @@ var pickRandom = function(wordList){
   return wordList[rand]
 }
 
-/* Memoize can be magic */
-function memoize(func) {
-  var cache = {};
-  return function() {
-    var key = arguments;
-    if(cache[key]) {
-      console.log("memoize worked: ", cache[key])
-      return cache[key];
-    }
-    else {
-      var val = func.apply(this, arguments);
-      cache[key] = val;
-      return val;
-    }
-  };
-}
-
 function idOrClassName(el){
   return ('#' + el.getAttribute('id') != '#null') ||
          ('.' + Array.from(el.classList).join('.'))
@@ -42,15 +28,6 @@ function idOrClassName(el){
 
 function elToSelector(el){
   return idOrClassName(el.parentNode) + '>' + idOrClassName(el)
-}
-
-/* safeListen avoid memory leaks when using addEventListener */
-var safeListen = function( element ){
-  console.log("memoized for: " + elToSelector(element))
-  return memoize(function(event,cb){
-    console.log("addEventListener " + elToSelector(element) + '('+event +') ' + cb.name)
-    return element.addEventListener(event, cb)
-  });
 }
 
 
@@ -164,6 +141,9 @@ var handleSettingsClick = function(targetEl, e){
   changeTooltipVisibility( tgtEl , (state['settings_visible'] == 'visible' ? 'hidden' : 'visible' ))
 }
 
+/*
+ * Charge method changed.
+ */
 var handleChargingChange = function( defaultTgt, e ){
   var tgtEl              = document.querySelector(defaultTgt)
 
@@ -202,11 +182,6 @@ var start = function(){
   state['items'].forEach( function(item){
     mkItemInteractive(item)
   })
-
-  /* recalculate when people edit item values
-  state.items.forEach( function(it) {
-    it.addEventListener('focusout', function(e){ recalculate() })
-  })*/
 
   recalculate()
 }

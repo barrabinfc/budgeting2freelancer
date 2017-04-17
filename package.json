@@ -1,0 +1,45 @@
+{
+  "name": "budgeting2freelancer",
+  "version": "0.1.0",
+  "description": "Budgeting tool by&to freelancers",
+  "main": "index.js",
+  "scripts": {
+    "test": "karma"
+  },
+  "keywords": [
+    "freelance",
+    "budgeting",
+    "app"
+  ],
+  "author": "bbfc",
+  "license": "ISC",
+  "dependencies": {
+    "autoprefixer": "^6.7.7",
+    "babel-eslint": "^7.2.2",
+    "babel-loader": "^6.4.1",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-assign": "^6.22.0",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-register": "^6.24.1",
+    "browser-sync": "^2.18.8",
+    "css-loader": "^0.28.0",
+    "eslint": "^3.19.0",
+    "eslint-plugin-import": "^2.2.0",
+    "exports-loader": "^0.6.4",
+    "file-loader": "^0.11.1",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-postcss": "^6.4.0",
+    "gulp-sourcemaps": "^2.6.0",
+    "gulp-util": "^3.0.8",
+    "imports-loader": "^0.7.1",
+    "postcss-cssnext": "^2.10.0",
+    "postcss-import": "^9.1.0",
+    "postcss-inline-svg": "^2.3.0",
+    "postcss-loader": "^1.3.3",
+    "url-loader": "^0.5.8",
+    "webpack": "^2.4.1",
+    "whatwg-fetch": "^2.0.3"
+  }
+}

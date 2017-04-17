@@ -1,0 +1,430 @@
+@import "rules.css";
+
+html {
+    color: #3b3b3b;
+    font-size: 16px;
+}
+
+
+p {
+    margin: 0; padding: 0;
+}
+
+::-moz-selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+    vertical-align: middle;
+}
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+textarea {
+    resize: vertical;
+}
+
+button, select {
+  padding: 0.10em;
+}
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+body {
+  font-family: 'Josefin Sans', sans-serif;
+  background: #ffffff;
+  font-weight: 500;
+  font-style: normal;
+  min-width: 320px;
+  width: 80vw;
+  margin: 0 auto;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: 'Oswald', sans-serif;
+  margin: 1em 0;
+}
+
+/*
+ * General buttons
+ */
+.settings-btn {
+  z-index: 10;
+  position: absolute;
+  right: -50px;
+  transform: scale(1.0);
+  transition: transform 0.15s ease-out;
+}
+.settings-btn:hover {
+  transform: scale(1.2);
+}
+
+.additem-btn {
+  z-index: 10;
+  position: absolute;
+  right: -50px;
+  bottom: 120px;
+  transform: scale(1.0);
+  transition: transform 0.15s ease-out;
+}
+.additem-btn:hover {
+  transform: scale(1.2);
+}
+
+/*
+ * Editable items
+ */
+*[contenteditable="true"]:focus {
+  outline: 2px dashed #b3b3b3;
+}
+
+
+/*
+ * Header (logo and Date)
+ */
+header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header .producer-info {
+  position: relative;
+  height: 130px;
+  width: 150px;
+}
+
+header .producer-info .refrao {
+  text-indent: 140px;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #6cd370;
+
+  position: absolute;
+  top: 20px; left: -10vw;
+  transform: rotateZ(-3deg);
+
+  width: 450px;
+  height: 30px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+}
+
+header .producer-info .email {
+  text-indent: 140px;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #fcb040;
+
+  position: absolute;
+  top: 53px; left: -10vw;
+  transform: rotateZ(-3deg);
+
+
+  width: 400px;
+  height: 30px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+header  .producer-info .telephone {
+  text-indent: 140px;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #63cdf5;
+
+  position: absolute;
+  top: 87px; left: -10vw;
+  transform: rotateZ(-3deg);
+
+  width: 350px;
+  height: 30px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+header #invoice-id {
+  margin-bottom: 0;
+  text-align: center;
+}
+
+header #invoice-date {
+  text-align: center;
+}
+
+
+
+
+/*
+ * Client Name and Payment-to info
+ */
+.payment-info {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin: 30px auto;
+}
+.payment-info .payment-to .account {
+  width: 300px;
+}
+
+.payment-info .payment-to .account > div {
+  display: flex;
+  justify-content: space-between;
+}
+.payment-info .payment-to .account label {
+  font-weight: bold;
+  width: 150px;
+}
+
+
+
+/*
+ * List of items billed for the project
+ */
+.project-todo {
+  margin-top: 20px;
+  width: 90%;
+  margin: 50px auto;
+  position: relative;
+}
+
+.project-todo .info > .name { width: 50%; text-align: left; }
+.project-todo .info > .hrs , .info > .rate { width: 10%; }
+.project-todo .info > .subtotal { width: 10%; }
+
+
+/* By hour / by Fixed price modifiers */
+.project-todo.by_hour .hrs ,
+.project-todo.by_hour .rate { visibility: visible; }
+
+.project-todo.by_fixedprice .hrs ,
+.project-todo.by_fixedprice .rate { visibility: hidden; }
+
+.project-todo .project-title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.breakdown .summary {
+  display: flex;
+  justify-content: space-between;
+  line-height: 2.0em;
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: right;
+  border-bottom: 2px solid #f3f3f3;
+  text-transform: uppercase;
+}
+
+.breakdown .todo > .item > .info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: right;
+  position: relative;
+  line-height: 2.0em;
+  font-weight: bold;
+  padding: 5px 10px;
+  background-clip: padding-box;
+}
+
+.breakdown .todo > .item > .info > .name { transition: transform 0.15s ease-out; }
+
+.breakdown .todo > .item > .info > .rate::before ,
+.breakdown .todo > .item > .info > .subtotal::before {
+  content: 'R$';
+  margin-right: 5px;
+}
+
+
+.breakdown .todo > .item > .description {
+  padding: 20px;
+}
+
+.breakdown .todo > .item:last-of-type {
+  border-bottom: 2px solid #f3f3f3;
+}
+
+
+/* Show rm-item btn on hover */
+.breakdown .todo > .item .info .rmItem-btn {
+  position: absolute;
+  left: 5px;
+  background: rgba(255,0,0,0.5);
+  color: #fff;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  content: '-';
+  line-height: 1.0em;
+  text-align: center;
+  cursor: pointer;
+
+  transition: all 0.15s ease-out;
+  transform: scale(0.1);
+
+  visibility: hidden;
+  opacity: 0;
+}
+
+.breakdown .todo > .item > .info:hover > .rmItem-btn {
+  transform: scale(1.0);
+  visibility: visible;
+  opacity: 1;
+}
+.breakdown .todo > .item > .info:hover > .name {
+  transform: translateX(16px)
+}
+
+
+/*
+ * Total and taxes and etc
+ */
+.project-todo .total {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 10px;
+  line-height: 2.0em;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.project-todo .total label {
+  text-align: right;
+}
+.project-todo .total .value {
+  width: 150px;
+  display: inline-block;
+  text-align: right;
+}
+
+.project-todo .total .subtotal > span {
+  font-size: 1.4em;
+  text-decoration: underline;
+}
+.project-todo .total .subtotal > span::before {
+  content: 'R$ ';
+  text-decoration: none;
+}
+
+
+footer {
+  width: 60%;
+  margin: 0px auto;
+  display: flex;
+  justify-content: space-around;
+}
+
+
+/* ==========================================================================
+   Media Queries
+   ========================================================================== */
+
+@media only screen and (min-width: 35em) {
+
+}
+
+@media print,
+       (-o-min-device-pixel-ratio: 5/4),
+       (-webkit-min-device-pixel-ratio: 1.25),
+       (min-resolution: 120dpi) {
+
+}
+
+
+/* ==========================================================================
+   Print styles
+   ========================================================================== */
+
+@media print {
+    *,
+    *:before,
+    *:after {
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    body {
+      width: 90vw;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    a[href^="#"]:after,
+    a[href^="javascript:"]:after {
+        content: "";
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    thead {
+        display: table-header-group;
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    .iconbtn { visibility: hidden; }
+    
+    .project-todo {
+      margin-bottom: 0;
+    }
+}
