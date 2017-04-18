@@ -14,28 +14,28 @@
     <body>
 
       <header>
-        <div class="producer-info">
+        <div name="logo" class="producer-info">
           <div id="logo-refrao" class="refrao" role="editable" >BAX UVA</div>
           <div id="logo-email" class="email" role="editable" >bax.uva@gmail.com</div>
           <div id="logo-telephone" class="telephone" role="editable" >+55 11 952078277</div>
         </div>
-        <div class="metadata">
-          <h1 id="invoice-id" role="editable" >Orçamento</h1>
-          <div id="invoice-date" role="editable" >19 Abril 2017</div>
+        <div name="invoice-id" class="metadata" role="editable">
+          <h1 id="invoice-id"  >Orçamento</h1>
+          <div id="invoice-date"  >19 Abril 2017</div>
         </div>
       </header>
 
       <article class="payment-info">
-        <section id="client-info" class="client-info" role="editable" >
+        <section name="client-details" id="client-info" class="client-info" role="editable" >
           <h2>Desenvolvimento de Website - Bigud</h2>
           <p>
               Orçamento para o desenvolvimento do site www.bigud.com.br em Wordpress, com layout 
               responsivo para dispositivos mobile, e de acordo com os padrões W3C.
           </p>
-		  <p><br/></p>
-			<p>** Prazo de entrega de 10 dias úteis a partir da contratação.</p>
+		      <p><br/></p>
+			    <p>** Prazo de entrega de 10 dias úteis a partir da contratação.</p>
         </section>
-        <section id="payment-to" class="payment-to" role="editable" >
+        <section name="other-details" id="payment-to" class="payment-to" role="editable" >
             <h2>Tecnologias:</h2>
             <div class="account">
               <div id="beneficiario"><label>Backend: </label><span>Wordpress e PHP5.</span></div>
@@ -46,18 +46,9 @@
       </article>
 
       <section class="project-todo by_fixedprice">
-        <div class="project-title">
-          <!-- <h1 role="editable" >Northface Web Site</h1> -->
-          <!-- 
-          <div class="iconbtn round attention settings-btn" data-target=".settings-tooltip">💵</div>
-          <div class="tooltip left settings-tooltip hidden">
-            <label for="Charging Method">Charging Method: </label>
-            <select name="Charging Method" id="charging-method">
-              <option value="by_hour">By Hour</option>
-              <option value="by_fixedprice" selected>By Fixed Price</option>
-            </select>
-          </div>
-          -->
+        
+        <div name="additional-details" class="project-title" role="editable">
+          <p></p>
         </div>
 
         <div class="breakdown">
@@ -78,18 +69,18 @@
             <div class="subtotal">SUBTOTAL</div>
           </div>
           <ul class="todo">
-            <li id="breakdown-item-01" class="item">
+            <li class="item">
               <div class="info soft-bg">
                 <div class="iconbtn round attention rmItem-btn">-</div>
 
-                <div class="name" role="editable" >Desenvolvimento em HTML</div>
+                <div name="description" class="name" role="editable" >Desenvolvimento em HTML</div>
                 <div class="hrs" role="editable" >40</div>
                 <div class="rate" role="editable" > 40</div>
                 <div class="subtotal" role="editable" > 300</div>
               </div>
               <div class="description" role="editable" ></div>
             </li>
-            <li id="breakdown-item-02" class="item">
+            <li class="item">
               <div class="info soft-bg">
                 <div class="iconbtn round attention rmItem-btn">-</div>
 
@@ -101,7 +92,7 @@
               </div>
               <div class="description" role="editable" ></div>
             </li>
-            <li id="breakdown-item-03" class="item">
+            <li class="item">
               <div class="info soft-bg">
                 <div class="iconbtn round attention rmItem-btn">-</div>
 

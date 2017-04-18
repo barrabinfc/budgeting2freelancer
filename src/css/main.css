@@ -107,6 +107,9 @@ h1,h2,h3,h4,h5,h6 {
 *[contenteditable]:focus {
   outline: 2px dashed #b3b3b3;
 }
+*[contenteditable]:empty {
+  padding: 0em !important;
+}
 
 
 /*
@@ -223,13 +226,12 @@ header #invoice-date {
  * List of items billed for the project
  */
 .project-todo {
-  margin-top: 20px;
   width: 100%;
-  margin: 50px auto;
+  margin: 0 auto;
   position: relative;
 }
 
-.project-todo .info > .name { width: 50%; text-align: left; }
+.project-todo .info > .title { width: 50%; text-align: left; }
 .project-todo .info > .hrs , .info > .rate { width: 10%; }
 .project-todo .info > .subtotal { width: 20%; }
 
@@ -276,7 +278,7 @@ header #invoice-date {
   background-clip: padding-box;
 }
 
-.breakdown .todo > .item > .info > .name { transition: transform 0.15s ease-out; }
+.breakdown .todo > .item > .info > .title { transition: transform 0.15s ease-out; }
 
 .breakdown .todo > .item > .info > .rate::before ,
 .breakdown .todo > .item > .info > .subtotal::before {
@@ -288,10 +290,6 @@ header #invoice-date {
 .breakdown .todo > .item > .description {
   transition: padding 0.15s ease-out;
   padding: 1em;
-
-  &:empty {
-    padding: 0em;
-  }
 }
 
 .breakdown .todo > .item:last-of-type {
@@ -325,7 +323,7 @@ header #invoice-date {
   visibility: visible;
   opacity: 1;
 }
-.breakdown .todo > .item > .info:hover > .name {
+.breakdown .todo > .item > .info:hover > .title {
   transform: translateX(16px)
 }
 
