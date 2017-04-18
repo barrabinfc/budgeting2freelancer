@@ -1,0 +1,153 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>BBFC Invoice</title>
+        <meta name="description" content="BBFC Invoice Template">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="css/main.css">
+
+        <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Oswald" rel="stylesheet">
+    </head>
+    <body>
+    <form>
+      <header>
+        <div name="logo" class="producer-info">
+          <div  class="refrao" role="editable" >BAX UVA</div>
+          <div  class="email" role="editable" >bax.uva@gmail.com</div>
+          <div  class="telephone" role="editable" >+55 11 952078277</div>
+        </div>
+        <div name="invoice-id" class="metadata" role="editable">
+          <h1 class="invoice-id"  >Orçamento</h1>
+          <div class="invoice-date" >19 Abril 2017</div>
+        </div>
+      </header>
+
+      <article class="payment-info">
+        <section name="client-details" id="client-info" class="client-info" role="editable" >
+          <h2>Desenvolvimento de Website - Bigud</h2>
+          <p>
+              Orçamento para o desenvolvimento do site www.bigud.com.br em Wordpress, com layout 
+              responsivo para dispositivos mobile, e de acordo com os padrões W3C.
+          </p>
+		      <p><br/></p>
+			    <p>** Prazo de entrega de 10 dias úteis a partir da contratação.</p>
+        </section>
+        <section name="other-details" class="payment-to" role="editable" >
+            <h2>Tecnologias:</h2>
+            <div class="account">
+              <div><label>Backend: </label><span>Wordpress e PHP5.</span></div>
+              <div><label>Frontend:</label><span>HTML5, CSS e Javascript.</span></div>
+              <div></div>
+            </div>
+        </section>
+      </article>
+
+      <section class="project-todo by_fixedprice">
+        
+        <div name="additional-details" class="project-title" role="editable">
+          <p></p>
+        </div>
+
+        <div class="breakdown">
+
+          <div class="iconbtn round attention settings-btn" data-target=".settings-tooltip">💵</div>
+          <div class="tooltip left settings-tooltip hidden">
+            <label for="Charging Method">Charging Method: </label>
+            <select name="Charging Method" id="charging-method">
+              <option value="by_hour">By Hour</option>
+              <option value="by_fixedprice" selected>By Fixed Price</option>
+            </select>
+          </div>
+
+          <div class="summary info soft-title">
+            <div class="title">Sumário</div>
+            <div class="qtd">QTD</div>
+            <div class="price">PREÇO</div>
+            <div class="subtotal">SUBTOTAL</div>
+          </div>
+          <ul name="items" class="todo" role="listbox">
+            <li class="item" role="listitem">
+              <div class="info soft-bg">
+                <div class="iconbtn round attention rmItem-btn">-</div>
+
+                <div name="title" class="title" role="editable input" >Desenvolvimento em HTML</div>
+                <div name="qtd" class="qtd" role="editable input" >40</div>
+                <div name="price" class="price" role="editable input" > 40</div>
+                <div name="subtotal" class="subtotal" role="editable input" > 300</div>
+              </div>
+              <div name="description" class="description" role="editable" ></div>
+            </li>
+            <li class="item" role="listitem">
+              <div class="info soft-bg">
+                <div class="iconbtn round attention rmItem-btn">-</div>
+
+                <div name="title" class="title" role="editable" >Animações e efeito Parallax Scrolling</div>
+                <div name="qtd" class="qtd" role="editable" >50</div>
+                <div name="price" class="price" role="editable" > 45</div>
+                <div name="subtotal" class="subtotal" role="editable" > 300</div>
+
+              </div>
+              <div name="description" class="description" role="editable" ></div>
+            </li>
+            <li class="item" role="listitem">
+              <div class="info soft-bg">
+                <div class="iconbtn round attention rmItem-btn">-</div>
+
+                <div name="title" class="title" role="editable" >Integração com CMS Wordpress</div>
+                <div name="qtd" class="qtd" role="editable" >8</div>
+                <div name="price" class="price" role="editable" >40</div>
+                <div name="subtotal" class="subtotal" role="editable" >600</div>
+
+              </div>
+              <div name="description" class="description" role="editable" ></div>
+            </li>
+            <li class="item" role="listitem">
+              <div class="info soft-bg">
+                <div class="iconbtn round attention rmItem-btn">-</div>
+
+                <div name="title" class="title" role="editable" >Otimização e testes</div>
+                <div name="qtd" class="qtd" role="editable" >2</div>
+                <div name="price" class="price" role="editable" >40</div>
+                <div name="subtotal" class="subtotal" role="editable" >300</div>
+
+              </div>
+              <div name="description" class="description" role="editable"  >
+                <p>- Otimização para SEO — Google Page Rank — e limpeza para usuários mobile em 3G.</p>
+              </div>
+            </li>  
+          </div>
+        </div>
+        <div class="iconbtn round attention additem-btn">+</div>
+
+        <div class="total soft">
+          <div class="taxes">
+            <label class="soft-title" >IMPOSTOS:</label>
+            <span name="total-taxes-value" class="value" role="editable" >N/A</span></div>
+          <div class="deductions">
+            <label  class="soft-title" >DEDUÇÕES:</label>
+            <span name="total-deduction-value" class="value" >N/A</span></div>
+          <div class="subtotal">
+            <label class="soft-title" >TOTAL:</label>
+            <span name="total-subtotal-value" class="value">1200</span>
+          </div>
+        </div>
+      </section>
+      
+      <section>
+        <button id="restore-btn" class="restore" type="button">RESTORE</button>
+        <button id="save-btn" class="save" type="button">SAVE</button>
+      </section>
+      
+      <footer>
+        <span name="telephone" class="telephone" role="editable">tel: (11) 952078277</span>
+        <span name="cnpj" class="website" role="editable">cnpj: 19.911.773/0001-58</span>
+        <span name="email" class="email" role="editable">email: bax.uva@gmail.com</span>
+      </footer>
+
+    </form>
+    <script src="js/app.js"></script>
+    </body>
+</html>
