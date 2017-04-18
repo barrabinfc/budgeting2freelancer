@@ -64,6 +64,8 @@ body {
   background: #ffffff;
   font-weight: 500;
   font-style: normal;
+  display: flex;
+  flex-direction: column;
   width: 80vw;
   margin: 0 auto;
 }
@@ -199,12 +201,12 @@ header #invoice-date {
 }
 .payment-info .client-info {
   margin-right: 1.0em;
-  max-width: 70%;
+  max-width: 65%;
 }
 .payment-info .payment-to { 
 /*.payment-info .payment-to .account { */
   width: auto;
-  min-width: 30%;
+  min-width: 35%;
 }
 
 .payment-info .payment-to .account > div {
@@ -361,9 +363,11 @@ header #invoice-date {
 
 
 footer {
-  width: 60%;
-  margin: 0px auto;
+  width: 80%;
+  margin: auto auto;
+  margin-bottom: 1em;
   display: flex;
+  align-self: flex-end;
   justify-content: space-around;
 }
 
@@ -396,6 +400,7 @@ footer {
 
     body {
       width: 90vw;
+      min-height: 100vh;
     }
 
     a,
@@ -439,4 +444,5 @@ footer {
     
     .project-todo { margin-bottom: 0; }
     #logo-refrao { width: 45vw; }
+
 }
