@@ -366,9 +366,12 @@ footer {
   width: 80%;
   margin: auto auto;
   margin-bottom: 1em;
-  display: flex;
+  
   align-self: flex-end;
-  justify-content: space-around;
+
+  display: flex;
+  justify-content: space-between;
+
 }
 
 
