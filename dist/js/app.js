@@ -4202,8 +4202,6 @@ var _ramda = __webpack_require__(119);
 
 var _editable = __webpack_require__(117);
 
-var _editable2 = _interopRequireDefault(_editable);
-
 var _words = __webpack_require__(118);
 
 var _invoice = __webpack_require__(115);
@@ -4425,20 +4423,18 @@ function start() {
   state['settingsBtn'] = document.querySelector('.settings-btn');
   state['addItemBtn'] = document.querySelector('.additem-btn');
   state['chargingMethodEl'] = document.querySelector('#charging-method');
-  state['saveBtn'] = document.querySelector('#save-btn');
-  state['restoreBtn'] = document.querySelector('#restore-btn');
 
   state.chargingMethodEl.addEventListener('change', handleChargingChange.bind({}, '.project-todo'));
   state.settingsBtn.addEventListener('click', handleSettingsClick.bind({}, '.settings-tooltip'));
   state.addItemBtn.addEventListener('click', handleAddItemClick);
-  state.saveBtn.addEventListener("click", handleSave.bind(this));
 
   updateState();
   handleRestore();
 
   state['items'].forEach(mkItemInteractive);
   state['editables'].forEach(function (editable) {
-    new _editable2.default(editable);
+    (0, _editable.makeEditable)(editable);
+    editable.addEventListener('blur', handleSave);
   });
 
   recalculate();
@@ -4525,13 +4521,9 @@ exports.default = Store;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
+exports.makeEditable = makeEditable;
 /*
  * Fix native contenteditable bugs
  *
@@ -4540,51 +4532,28 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 // Remove empty <p><br/><p> to empty <p> tag.
 function collapseEmptyElement(element) {
-    var _cleanHtml = "";
-    var _dirtyHtml = element.innerHTML.trim();
+  var _cleanHtml = "";
+  var _dirtyHtml = element.innerHTML.trim();
 
-    element.innerHTML = _dirtyHtml.replace(/^<p><br><\/p>$/, "");
+  element.innerHTML = _dirtyHtml.replace(/^<p><br><\/p>$/, "");
 }
 
-var TxtEditable = function () {
-    /*
-     * Make el editable
-     *
-     * @params el   Element to be made editable
-     */
-    function TxtEditable(el) {
-        _classCallCheck(this, TxtEditable);
+/**
+ * make El editable
+ * @param  {[type]}  el                [description]
+ * @param  {Boolean} [isEditable=true] [description]
+ * @return {[type]}                    [description]
+ */
+function makeEditable(el) {
+  var isEditable = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
 
-        this.el = el;
-        this.makeEditable(this.el);
-        this._blurHandler = this.el.addEventListener('blur', this.blurHandler.bind(this));
-    }
+  var _iseditable = isEditable ? 'true' : 'false';
+  el.setAttribute('contentEditable', _iseditable);
 
-    /* Make El editable 
-     * @params el Element
-     * @params is_editable Boolean to be made editable or not 
-     */
-
-
-    _createClass(TxtEditable, [{
-        key: "makeEditable",
-        value: function makeEditable(el) {
-            var isEditable = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
-
-            var _iseditable = isEditable ? 'true' : 'false';
-            this.el.setAttribute('contentEditable', _iseditable);
-        }
-    }, {
-        key: "blurHandler",
-        value: function blurHandler(ev) {
-            collapseEmptyElement(ev.target);
-        }
-    }]);
-
-    return TxtEditable;
-}();
-
-exports.default = TxtEditable;
+  var _blurHandler = el.addEventListener('blur', function (ev) {
+    collapseEmptyElement(el);
+  });
+}
 
 /***/ }),
 /* 118 */

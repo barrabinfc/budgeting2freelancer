@@ -1,6 +1,6 @@
 import { map, addIndex, mapObjIndexed, fromPairs , omit } from 'ramda'
 
-import TxtEditable from './editable'
+import {makeEditable} from './editable'
 import {WORDS_ADJ, WORDS_NOUNS, pickRandWord} from './words'
 
 import {InvoiceModel} from './db/models/invoice'
@@ -217,19 +217,19 @@ function start(){
   state['settingsBtn']       = document.querySelector('.settings-btn')
   state['addItemBtn']        = document.querySelector('.additem-btn')
   state['chargingMethodEl']  =  document.querySelector('#charging-method')
-  state['saveBtn']           = document.querySelector('#save-btn')
-  state['restoreBtn']        = document.querySelector('#restore-btn')
 
   state.chargingMethodEl.addEventListener('change', handleChargingChange.bind({}, '.project-todo') )
   state.settingsBtn.addEventListener('click',       handleSettingsClick.bind({},  '.settings-tooltip')  )
   state.addItemBtn.addEventListener('click',        handleAddItemClick )
-  state.saveBtn.addEventListener("click",           handleSave.bind(this) )
 
   updateState()
   handleRestore()
 
   state['items'].forEach( mkItemInteractive )
-  state['editables'].forEach( (editable) => { new TxtEditable(editable) } )
+  state['editables'].forEach( (editable) => { 
+    makeEditable(editable)
+    editable.addEventListener('blur',  handleSave )
+  })
 
   recalculate()
 }

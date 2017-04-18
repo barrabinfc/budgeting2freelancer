@@ -12,30 +12,17 @@ function collapseEmptyElement( element ){
     element.innerHTML = _dirtyHtml.replace(/^<p><br><\/p>$/,"")
 }
 
-class TxtEditable {
-    /*
-     * Make el editable
-     *
-     * @params el   Element to be made editable
-     */
-    constructor(el){
-        this.el = el
-        this.makeEditable( this.el )
-        this._blurHandler = this.el.addEventListener('blur', this.blurHandler.bind(this))
-    }
-
-    /* Make El editable 
-     * @params el Element
-     * @params is_editable Boolean to be made editable or not 
-     */
-    makeEditable( el , isEditable=true) {
-        let _iseditable = (isEditable ? 'true' : 'false')
-        this.el.setAttribute('contentEditable', _iseditable)
-    }
-
-    blurHandler( ev ){
-        collapseEmptyElement( ev.target )
-    }
+/**
+ * make El editable
+ * @param  {[type]}  el                [description]
+ * @param  {Boolean} [isEditable=true] [description]
+ * @return {[type]}                    [description]
+ */
+export function makeEditable( el , isEditable=true) {
+  let _iseditable = (isEditable ? 'true' : 'false')
+  el.setAttribute('contentEditable', _iseditable)
+  
+  let _blurHandler = el.addEventListener('blur', (ev) => {
+    collapseEmptyElement(el)
+  })
 }
-
-export default TxtEditable
