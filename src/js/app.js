@@ -1,27 +1,64 @@
+import { map, addIndex, mapObjIndexed, fromPairs , omit } from 'ramda'
+
 import TxtEditable from './editable'
 import {WORDS_ADJ, WORDS_NOUNS, pickRandWord} from './words'
 
+import {InvoiceModel} from './db/models/invoice'
+import Store from './db/store'
+
 let settings = {
     itemSelector:        '.todo .item',
-    editableSelector:    '*[role="editable"]'
+    editableSelector:    '*[role="editable"]',
 }
 
 let state = {
   charging_method: 'by_fixedprice',
   settings_visible: 'hidden',
   items:            [],
-  editables:        []
+  editables:        [],
+  store:            new Store()
 }
 
-// Store
-let store = {};
+/**
+ * Form serialize/deserialize
+ */
 
-// hourly-rate math
-function calculateHourlyRate(itemEl) {
-  let rate = parseFloat( itemEl.querySelector('.rate').textContent )
-  let hrs  = parseFloat( itemEl.querySelector('.hrs').textContent )
+// side-effect to set INNERHTML of Element(name="alo")
+function setElementHTML( selContext, name, value ) {
+  let el = selContext.querySelector(`[name="${name}"]`)
+  if(el) el.innerHTML = value
+}
 
-  return (rate * hrs)
+function getElementHTML( selContext, name ) {
+  let el = selContext.querySelector(`[name="${name}"]`)
+  return (el && el.innerHTML || "") 
+}
+
+/*
+ * Serialize single item to {title: "X", "qtd": 1, "price": 10, etc...}
+ */
+const ITEM_FIELDS = ["title","qtd","price","subtotal","description"]
+function serializeItem( item ) {
+  return fromPairs( map( 
+    (name) => [name, getElementHTML( item, name ) ] 
+  , ITEM_FIELDS ))
+}
+
+function deserializeItem( item , data ){
+  map( (name) => {
+    setElementHTML(item, name, data[name]) 
+  }, ITEM_FIELDS )
+}
+
+
+/**
+ * Invoice Math
+ */
+function calculateCompoundPrice(itemEl) {
+  let price = parseFloat( itemEl.querySelector('.price').textContent )
+  let qtd  = parseFloat( itemEl.querySelector('.qtd').textContent )
+
+  return (price * qtd)
 }
 
 function calculateFixedPrice(itemEl) {
@@ -31,7 +68,7 @@ function calculateFixedPrice(itemEl) {
 // one item price
 function calculateItemPrice(itemEl) {
   return ( state.charging_method == 'by_hour' ?
-            calculateHourlyRate(itemEl) :
+            calculateCompoundPrice(itemEl) :
             calculateFixedPrice(itemEl) )
 }
 
@@ -91,8 +128,8 @@ function createItem() {
   newItem.querySelector('.description').textContent = 'And also because of my +ADJ +NOUN.'
           .replace('+ADJ',pickRandWord(WORDS_ADJ)).replace('+NOUN',pickRandWord(WORDS_NOUNS))
   newItem.querySelector('.subtotal').textContent =  1000
-  newItem.querySelector('.hrs').textContent = 10
-  newItem.querySelector('.rate').textContent = 100
+  newItem.querySelector('.qtd').textContent = 10
+  newItem.querySelector('.price').textContent = 100
 
   mkItemInteractive( newItem )
 
@@ -121,15 +158,15 @@ function changeChargingMethodLayout( defaultTgt, newMethod ) {
 }
 
 
+/**
+ * Events handlers
+ */
 function handleSettingsClick(targetEl, e) {
   let tgtEl   = document.querySelector( targetEl ) ||
                 document.querySelector( e.target.getAttribute('data-target') )
   changeTooltipVisibility( tgtEl , (state['settings_visible'] == 'visible' ? 'hidden' : 'visible' ))
 }
 
-/*
- * Charge method changed.
- */
 function handleChargingChange( defaultTgt, e ) {
   let tgtEl              = document.querySelector(defaultTgt)
 
@@ -153,18 +190,43 @@ function handleRmItemClick(e) {
   recalculate()
 }
 
+/* Save data to store */
+function handleSave(ev) {
+
+  let invoiceParams = mapObjIndexed( (value, name) => getElementHTML(document, name) , InvoiceModel )
+  let invoiceItems  = map( serializeItem, state['items'] )
+  
+  let invoice       = Object.assign( invoiceParams, {items: invoiceItems} )
+  state['store'].save('invoice', invoice )
+}
+
+/* Restore data from store */
+function handleRestore(ev) {
+  let invoice = state['store'].get('invoice')
+  if(!invoice) return
+  
+  let params = omit('items', invoice )
+  let mapIndexed = addIndex(map)
+  
+  mapObjIndexed( (value, name) => setElementHTML(document, name, value) , params )
+  mapIndexed( (el,i) => deserializeItem(el, invoice["items"][i]) , state['items'] )
+}
 
 function start(){
 
   state['settingsBtn']       = document.querySelector('.settings-btn')
   state['addItemBtn']        = document.querySelector('.additem-btn')
   state['chargingMethodEl']  =  document.querySelector('#charging-method')
+  state['saveBtn']           = document.querySelector('#save-btn')
+  state['restoreBtn']        = document.querySelector('#restore-btn')
 
   state.chargingMethodEl.addEventListener('change', handleChargingChange.bind({}, '.project-todo') )
   state.settingsBtn.addEventListener('click',       handleSettingsClick.bind({},  '.settings-tooltip')  )
   state.addItemBtn.addEventListener('click',        handleAddItemClick )
+  state.saveBtn.addEventListener("click",           handleSave.bind(this) )
 
   updateState()
+  handleRestore()
 
   state['items'].forEach( mkItemInteractive )
   state['editables'].forEach( (editable) => { new TxtEditable(editable) } )

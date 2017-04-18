@@ -181,12 +181,12 @@ header  .producer-info .telephone {
   align-items: center;
 }
 
-header #invoice-id {
+header .invoice-id {
   margin-bottom: 0;
   text-align: center;
 }
 
-header #invoice-date {
+header .invoice-date {
   text-align: center;
 }
 
@@ -232,16 +232,16 @@ header #invoice-date {
 }
 
 .project-todo .info > .title { width: 50%; text-align: left; }
-.project-todo .info > .hrs , .info > .rate { width: 10%; }
+.project-todo .info > .qtd , .info > .rate { width: 10%; }
 .project-todo .info > .subtotal { width: 20%; }
 
 
 /* By hour / by Fixed price modifiers */
-.project-todo.by_hour .hrs ,
-.project-todo.by_hour .rate { visibility: visible; }
+.project-todo.by_hour .qtd ,
+.project-todo.by_hour .price { visibility: visible; }
 
-.project-todo.by_fixedprice .hrs ,
-.project-todo.by_fixedprice .rate { visibility: hidden; }
+.project-todo.by_fixedprice .qtd ,
+.project-todo.by_fixedprice .price { visibility: hidden; }
 
 .project-todo .project-title {
   display: flex;
@@ -383,7 +383,7 @@ footer {
         overflow-x: hidden;
         width: 95vw;
     }
-    #refrao { width: 50vw; }
+    .refrao { width: 50vw; }
 }
 
 
@@ -444,6 +444,6 @@ footer {
     .iconbtn { visibility: hidden; }
     
     .project-todo { margin-bottom: 0; }
-    #logo-refrao { width: 45vw; }
+    .logo-refrao { width: 45vw; }
 
 }

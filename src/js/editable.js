@@ -34,7 +34,6 @@ class TxtEditable {
     }
 
     blurHandler( ev ){
-        console.log(ev)
         collapseEmptyElement( ev.target )
     }
 }

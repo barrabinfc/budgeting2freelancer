@@ -12,16 +12,16 @@
         <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Oswald" rel="stylesheet">
     </head>
     <body>
-
+    <form>
       <header>
         <div name="logo" class="producer-info">
-          <div id="logo-refrao" class="refrao" role="editable" >BAX UVA</div>
-          <div id="logo-email" class="email" role="editable" >bax.uva@gmail.com</div>
-          <div id="logo-telephone" class="telephone" role="editable" >+55 11 952078277</div>
+          <div  class="refrao" role="editable" >BAX UVA</div>
+          <div  class="email" role="editable" >bax.uva@gmail.com</div>
+          <div  class="telephone" role="editable" >+55 11 952078277</div>
         </div>
         <div name="invoice-id" class="metadata" role="editable">
-          <h1 id="invoice-id"  >Orçamento</h1>
-          <div id="invoice-date"  >19 Abril 2017</div>
+          <h1 class="invoice-id"  >Orçamento</h1>
+          <div class="invoice-date" >19 Abril 2017</div>
         </div>
       </header>
 
@@ -35,11 +35,11 @@
 		      <p><br/></p>
 			    <p>** Prazo de entrega de 10 dias úteis a partir da contratação.</p>
         </section>
-        <section name="other-details" id="payment-to" class="payment-to" role="editable" >
+        <section name="other-details" class="payment-to" role="editable" >
             <h2>Tecnologias:</h2>
             <div class="account">
-              <div id="beneficiario"><label>Backend: </label><span>Wordpress e PHP5.</span></div>
-              <div id="banco"><label>Frontend:</label><span>HTML5, CSS e Javascript.</span></div>
+              <div><label>Backend: </label><span>Wordpress e PHP5.</span></div>
+              <div><label>Frontend:</label><span>HTML5, CSS e Javascript.</span></div>
               <div></div>
             </div>
         </section>
@@ -63,58 +63,58 @@
           </div>
 
           <div class="summary info soft-title">
-            <div class="name">Sumário</div>
-            <div class="hrs">HRS</div>
-            <div class="rate">TAXA</div>
+            <div class="title">Sumário</div>
+            <div class="qtd">QTD</div>
+            <div class="price">PREÇO</div>
             <div class="subtotal">SUBTOTAL</div>
           </div>
-          <ul class="todo">
-            <li class="item">
+          <ul name="items" class="todo" role="listbox">
+            <li class="item" role="listitem">
               <div class="info soft-bg">
                 <div class="iconbtn round attention rmItem-btn">-</div>
 
-                <div name="description" class="name" role="editable" >Desenvolvimento em HTML</div>
-                <div class="hrs" role="editable" >40</div>
-                <div class="rate" role="editable" > 40</div>
-                <div class="subtotal" role="editable" > 300</div>
+                <div name="title" class="title" role="editable input" >Desenvolvimento em HTML</div>
+                <div name="qtd" class="qtd" role="editable input" >40</div>
+                <div name="price" class="price" role="editable input" > 40</div>
+                <div name="subtotal" class="subtotal" role="editable input" > 300</div>
               </div>
-              <div class="description" role="editable" ></div>
+              <div name="description" class="description" role="editable" ></div>
             </li>
-            <li class="item">
+            <li class="item" role="listitem">
               <div class="info soft-bg">
                 <div class="iconbtn round attention rmItem-btn">-</div>
 
-                <div class="name" role="editable" >Animações e efeito Parallax Scrolling</div>
-                <div class="hrs" role="editable" >50</div>
-                <div class="rate" role="editable" > 45</div>
-                <div class="subtotal" role="editable" > 300</div>
+                <div name="title" class="title" role="editable" >Animações e efeito Parallax Scrolling</div>
+                <div name="qtd" class="qtd" role="editable" >50</div>
+                <div name="price" class="price" role="editable" > 45</div>
+                <div name="subtotal" class="subtotal" role="editable" > 300</div>
 
               </div>
-              <div class="description" role="editable" ></div>
+              <div name="description" class="description" role="editable" ></div>
             </li>
-            <li class="item">
+            <li class="item" role="listitem">
               <div class="info soft-bg">
                 <div class="iconbtn round attention rmItem-btn">-</div>
 
-                <div class="name" role="editable" >Integração com CMS Wordpress</div>
-                <div class="hrs" role="editable" >8</div>
-                <div class="rate" role="editable" >40</div>
-                <div class="subtotal" role="editable" >600</div>
+                <div name="title" class="title" role="editable" >Integração com CMS Wordpress</div>
+                <div name="qtd" class="qtd" role="editable" >8</div>
+                <div name="price" class="price" role="editable" >40</div>
+                <div name="subtotal" class="subtotal" role="editable" >600</div>
 
               </div>
-              <div class="description" role="editable" ></div>
+              <div name="description" class="description" role="editable" ></div>
             </li>
-            <li id="breakdown-item-03" class="item">
+            <li class="item" role="listitem">
               <div class="info soft-bg">
                 <div class="iconbtn round attention rmItem-btn">-</div>
 
-                <div class="name" role="editable" >Otimização e testes</div>
-                <div class="hrs" role="editable" >2</div>
-                <div class="rate" role="editable" >40</div>
-                <div class="subtotal" role="editable" >300</div>
+                <div name="title" class="title" role="editable" >Otimização e testes</div>
+                <div name="qtd" class="qtd" role="editable" >2</div>
+                <div name="price" class="price" role="editable" >40</div>
+                <div name="subtotal" class="subtotal" role="editable" >300</div>
 
               </div>
-              <div class="description" role="editable"  >
+              <div name="description" class="description" role="editable"  >
                 <p>- Otimização para SEO — Google Page Rank — e limpeza para usuários mobile em 3G.</p>
               </div>
             </li>  
@@ -124,24 +124,30 @@
 
         <div class="total soft">
           <div class="taxes">
-            <label id="total-taxes-title" class="soft-title" role="editable" >IMPOSTOS:</label>
-            <span id="total-taxes-value" class="value" role="editable" >N/A</span></div>
+            <label class="soft-title" >IMPOSTOS:</label>
+            <span name="total-taxes-value" class="value" role="editable" >N/A</span></div>
           <div class="deductions">
-            <label id="total-deduction-title" class="soft-title" role="editable" >DEDUÇÕES:</label>
-            <span id="total-deduction-value" class="value" >N/A</span></div>
+            <label  class="soft-title" >DEDUÇÕES:</label>
+            <span name="total-deduction-value" class="value" >N/A</span></div>
           <div class="subtotal">
-            <label id="total-subtotal-title" class="soft-title" role="editable" >TOTAL:</label>
-            <span id="total-subtotal-value" class="value">1200</span>
+            <label class="soft-title" >TOTAL:</label>
+            <span name="total-subtotal-value" class="value">1200</span>
           </div>
         </div>
       </section>
-
+      
+      <section>
+        <button id="restore-btn" class="restore" type="button">RESTORE</button>
+        <button id="save-btn" class="save" type="button">SAVE</button>
+      </section>
+      
       <footer>
-        <span class="telephone" >tel: (11) 952078277</span>
-        <span class="website" >cnpj: 19.911.773/0001-58</span>
-        <span class="email" >email: bax.uva@gmail.com</span>
+        <span name="telephone" class="telephone" role="editable">tel: (11) 952078277</span>
+        <span name="cnpj" class="website" role="editable">cnpj: 19.911.773/0001-58</span>
+        <span name="email" class="email" role="editable">email: bax.uva@gmail.com</span>
       </footer>
 
-        <script src="js/app.js"></script>
+    </form>
+    <script src="js/app.js"></script>
     </body>
 </html>
